@@ -59,6 +59,40 @@ def get_tv_info(tv_id="46260", season=1):
     }
 
 
+def parse_movie_info(info):
+    effective_message = (
+        f"{info['title']} ({info['original_title']})\n\n"
+        if info["original_title"] != info["title"]
+        else f"{info['title']}\n\n"
+    )
+    effective_message += f"上映日期: {info['release_date']}\n\n"
+    effective_message += f"类型: {', '.join(info['genres'])}\n\n"
+    effective_message += (
+        f"简介：{info['overview']}"
+        if len(info["overview"]) < 100
+        else f"简介：{info['overview'][:100]}..."
+    )
+    return effective_message
+
+
+def parse_tv_info(info):
+    effective_message = (
+        f"{info['title']} ({info['original_title']})\n\n"
+        if info["original_title"] != info["title"]
+        else f"{info['title']}\n\n"
+    )
+    effective_message += f"第{info['season']}季 共{info['number_of_episodes']}集\n\n"
+    effective_message += f"开播日期: {info['release_date']}\n\n"
+    effective_message += f"状态: {info['status']}\n\n"
+    effective_message += f"类型: {', '.join(info['genres'])}\n\n"
+    effective_message += (
+        f"简介：{info['overview']}"
+        if len(info["overview"]) < 100
+        else f"简介：{info['overview'][:100]}..."
+    )
+    return effective_message
+
+
 if __name__ == "__main__":
-    print(get_tv_info('1260951', 1))
+    print(get_tv_info("1260951", 1))
     # print(get_movie_info())
