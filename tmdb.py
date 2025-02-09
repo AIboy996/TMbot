@@ -44,6 +44,9 @@ def get_tv_info(tv_id="46260", season=1):
     overview = season_now.get("overview")
     number_of_episodes_now = season_now.get("episode_count")
     poster_path = season_now.get("poster_path")
+    # season poster missing, using tv poster instead
+    if poster_path is None:
+        poster_path = response.get("poster_path")
     release_date = season_now.get("air_date")
     season_name = season_now.get("name")
     return {
@@ -94,5 +97,5 @@ def parse_tv_info(info):
 
 
 if __name__ == "__main__":
-    print(get_tv_info("1260951", 1))
+    print(get_tv_info("84919", 1))
     # print(get_movie_info())
