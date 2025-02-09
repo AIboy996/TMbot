@@ -47,6 +47,8 @@ def get_tv_info(tv_id="46260", season=1):
     # season poster missing, using tv poster instead
     if poster_path is None:
         poster_path = response.get("poster_path")
+    if overview == "":
+        overview = response.get("overview")
     release_date = season_now.get("air_date")
     season_name = season_now.get("name")
     return {
